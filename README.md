@@ -8,7 +8,7 @@ PROJETO VAGA SEPOG.
 
 * Utilizar esse brach para fazer o solicitado do projeto
 
-* Utilizar as seguintes gems: Devise, Bootstrap, Haml
+* Utilizar pelo menos as seguintes gems: Devise, Bootstrap, Haml
 
 #### Sobre o projeto:
 
