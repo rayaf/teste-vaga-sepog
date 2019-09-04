@@ -20,10 +20,6 @@
           =link_to 'Postastes', root_path, class: "navbar-brand"
 
         #bs-example-navbar-collapse-1.collapse.navbar-collapse
-          %ul.nav.navbar-nav
-            %li
-              %a{:href => "#"}
-                Link
           %ul.nav.navbar-nav.navbar-right
             - if current_user.nil?
               %li
@@ -35,7 +31,7 @@
                   %span.caret
                 %ul.dropdown-menu
                   %li
-                    %a{:href => "#"} Action
+                    = link_to 'Editar conta', edit_user_registration_path
                   %li
                     %a{:href => "#"} Another action
                   %li
