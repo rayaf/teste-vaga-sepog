@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
+  before_action :check_ownership, only: [:edit, :update, :destroy]
 
 
   # GET /posts
@@ -56,5 +57,9 @@ class PostsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
       params.require(:post).permit(:title, :content, :user_id)
+    end
+
+    def check_ownership
+        redirect_to posts_url, notice: 'Você não pode alterar um post que não é seu!' if @post.user.id != current_user.id
     end
 end
