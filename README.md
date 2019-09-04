@@ -4,11 +4,13 @@ PROJETO VAGA SEPOG.
 
 #### Passos obrigatórios:
 
-* Criar um brach no projeto com o seu usuario do github.
+* Não usar o branch master.
 
-* Utilizar esse brach para fazer o solicitado do projeto
+* Criar um branch no projeto com o seu usuario do github.
 
-* Utilizar pelo menos as seguintes gems: Devise, Bootstrap, Haml
+* Utilizar esse branch para fazer o solicitado do projeto.
+
+* Utilizar pelo menos as seguintes gems: Devise, Bootstrap, Haml.
 
 #### Sobre o projeto:
 
