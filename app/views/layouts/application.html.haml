@@ -1,0 +1,47 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title TesteVaga
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  %body
+    %nav.navbar.navbar-default
+      .container-fluid
+
+        .navbar-header
+          %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+            %span.sr-only Toggle navigation
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          =link_to 'Postastes', root_path, class: "navbar-brand"
+
+        #bs-example-navbar-collapse-1.collapse.navbar-collapse
+          %ul.nav.navbar-nav
+            %li
+              %a{:href => "#"}
+                Link
+          %ul.nav.navbar-nav.navbar-right
+            - if current_user.nil?
+              %li
+                = link_to 'Logar', new_user_session_path
+            - unless current_user.nil?
+              %li.dropdown
+                %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                  Usuario
+                  %span.caret
+                %ul.dropdown-menu
+                  %li
+                    %a{:href => "#"} Action
+                  %li
+                    %a{:href => "#"} Another action
+                  %li
+                    %a{:href => "#"} Something else here
+                  %li.divider{:role => "separator"}
+                  %li
+                    = link_to 'Sair', destroy_user_session_path, method: :delete
+    .container
+      = yield
