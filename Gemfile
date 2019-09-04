@@ -16,7 +16,10 @@ gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
 
-#https://github.com/plataformatec/devise authentication 
+gem 'jquery-rails'
+gem 'bootstrap-sass', '~> 3.4.1'
+
+#https://github.com/plataformatec/devise authentication
 gem 'devise'
 
 #http://haml.info/docs.html template enguine
