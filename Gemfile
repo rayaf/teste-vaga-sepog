@@ -18,6 +18,7 @@ gem 'uglifier', '>= 1.3.0'
 
 gem 'jquery-rails'
 gem 'bootstrap-sass', '~> 3.4.1'
+gem 'trix'
 
 #https://github.com/plataformatec/devise authentication
 gem 'devise'
