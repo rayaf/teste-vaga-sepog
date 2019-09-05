@@ -3,4 +3,6 @@ class Post < ApplicationRecord
 
   has_many :commentaries, dependent: :destroy
   has_many :stars, dependent: :destroy
+  validates :title, :content, presence: true
+
 end
