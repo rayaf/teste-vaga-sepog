@@ -1,3 +1,5 @@
+= stylesheet_link_tag 'posts', media: 'all'
+
 = form_with(model: commentary, local: true) do |form|
 
   - if commentary.errors.any?
@@ -8,12 +10,12 @@
       %ul
         - commentary.errors.full_messages.each do |message|
           %li= message
-  .field
+  .form-group
     - unless commentary.try(:id).nil? 
       = hidden_field_tag '_method', 'patch'
-    = form.label :commentary_text
-    = form.text_area :commentary_text
+    = form.label :commentary_text, 'Comente'
+    = form.text_area :commentary_text, class: "form-control"
     = form.hidden_field :post_id, :value => commentary.post_id
   .actions
-    = form.submit 'Postar Comentário'
+    = form.submit 'Postar Comentário', class:"btn btn-success"
 

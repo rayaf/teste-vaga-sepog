@@ -1,0 +1,36 @@
+%h2
+  Edit #{resource_name.to_s.humanize}
+= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+  = render "devise/shared/error_messages", resource: resource
+  .form-group
+    = f.label :email
+    %br/
+    = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control"
+  - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+    %div
+      Atualmente aguardando confirmação para: #{resource.unconfirmed_email}
+  .form-group
+    = f.label :password
+    %i (deixe em branco se não quiser alterá-lo)
+    %br/
+    = f.password_field :password, autocomplete: "Nova senha", class: "form-control"
+    - if @minimum_password_length
+      %br/
+      %em
+        = @minimum_password_length
+        characters minimum
+  .form-group
+    = f.label :password_confirmation
+    %br/
+    = f.password_field :password_confirmation, autocomplete: "Nova senha", class: "form-control"
+  .form-group
+    = f.label :current_password
+    %i (precisamos da sua senha atual para confirmar suas alterações)
+    %br/
+    = f.password_field :current_password, autocomplete: "senha atual", class: "form-control"
+  .actions
+    = f.submit "Atualizar", class:"btn btn-success"
+%h3 Cancelar minha conta
+%p
+  Infeliz? #{button_to "Cancelar minha conta", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class:"btn btn-danger"}
+= link_to "Voltar", :back, class:"btn btn-warning"
