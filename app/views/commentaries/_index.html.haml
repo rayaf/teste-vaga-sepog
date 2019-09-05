@@ -1,0 +1,15 @@
+%h3 Commentaries
+%table
+  %thead
+    %tr
+      %th Commentary text
+      %th{:colspan => "3"}
+  %tbody
+    - unless @commentaries.exists?
+      %p Não há nenhum comentario no momento
+    -else
+      - @commentaries.each do |commentary|
+        %tr
+          %td= commentary.commentary_text
+          %td= link_to 'Edit', edit_commentary_path(commentary)
+          %td= link_to 'Destroy', commentary, method: :delete, data: { confirm: 'Are you sure?' }

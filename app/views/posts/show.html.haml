@@ -5,6 +5,12 @@
 %p
   %strong Content:
   = @post.content
+  %br
+
+  = render 'commentaries/form', commentary: @new_commentary
+  = render 'commentaries/index', commentaries: @commentaries
+
+ 
 
 = link_to 'Edit', edit_post_path(@post)
 

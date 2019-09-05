@@ -1,0 +1,24 @@
+-# -if commentary.try(:id).nil?
+-#   - httpMethod = :post
+-# - else
+-#   - httpMethod = :patch
+-# = form_for(:commentary, url: commentaries_path, method: :post) do |form|
+= form_with(model: commentary, local: true) do |form|
+
+  - if commentary.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(commentary.errors.count, "error")
+        prohibited this commentary from being saved:
+      %ul
+        - commentary.errors.full_messages.each do |message|
+          %li= message
+  .field
+    - unless commentary.try(:id).nil? 
+      = hidden_field_tag '_method', 'patch'
+    = form.label :commentary_text
+    = form.text_area :commentary_text
+    = form.hidden_field :post_id, :value => commentary.post_id
+  .actions
+    = form.submit 'Postar Comentário'
+

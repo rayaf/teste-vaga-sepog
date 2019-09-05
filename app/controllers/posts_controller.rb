@@ -11,6 +11,8 @@ class PostsController < ApplicationController
 
   # GET /posts/1
   def show
+    @commentaries = Commentary.where(post_id: @post.id)
+    @new_commentary = @post.commentaries.new
   end
 
   # GET /posts/new
@@ -24,7 +26,6 @@ class PostsController < ApplicationController
 
   # POST /posts
   def create
-    # @post = Post.new(post_params)
     @post = current_user.posts.new(post_params)
     if @post.save
       redirect_to @post, notice: 'Post criado com sucesso!'
