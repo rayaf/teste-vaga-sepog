@@ -2,7 +2,7 @@ class CommentariesController < ApplicationController
   before_action :set_commentary, only: [:show, :edit, :update, :destroy]
   before_action :set_post, only: [:edit, :update, :destroy]
 
-  before_action :authenticate_user!, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:create, :edit, :update, :destroy]
   before_action :check_ownership, only: [:edit, :update, :destroy]
 
   # GET /commentaries/1/edit

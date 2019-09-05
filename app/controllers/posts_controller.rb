@@ -79,6 +79,10 @@ class PostsController < ApplicationController
     end
 
     def set_star
-      @star = Star.where("user_id = ? AND post_id = ?", current_user.id, params[:id]).first
+      if current_user.nil?
+        @star = Star.where(post_id: params[:id]).first
+      else
+        @star = Star.where("user_id = ? AND post_id = ?", current_user.id, params[:id]).first
+      end
     end
 end
