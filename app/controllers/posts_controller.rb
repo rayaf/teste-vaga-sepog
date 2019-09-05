@@ -1,7 +1,8 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :rated]
   before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
   before_action :check_ownership, only: [:edit, :update, :destroy]
+  before_action :set_star, only: [:show, :rated]
 
 
   # GET /posts
@@ -28,6 +29,8 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.new(post_params)
     if @post.save
+      star = @post.stars.build(user_id: current_user.id)
+      star.save
       redirect_to @post, notice: 'Post criado com sucesso!'
     else
       render :new
@@ -49,6 +52,17 @@ class PostsController < ApplicationController
     redirect_to posts_url, notice: 'Post Deletado com sucesso!'
   end
 
+  # PATCH /posts/1/rated
+  def rated
+    if @star.with_star?
+      @star.without_star!
+      redirect_to @post
+    else
+      @star.with_star!
+      redirect_to @post, notice: 'Obrigado pela estrela'
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
@@ -62,5 +76,9 @@ class PostsController < ApplicationController
 
     def check_ownership
         redirect_to posts_url, notice: 'Você não pode alterar um post que não é seu!' if @post.user.id != current_user.id
+    end
+
+    def set_star
+      @star = Star.where("user_id = ? AND post_id = ?", current_user.id, params[:id]).first
     end
 end

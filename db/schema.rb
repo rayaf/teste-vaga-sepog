@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_04_143800) do
+ActiveRecord::Schema.define(version: 2019_09_05_032434) do
 
   create_table "commentaries", force: :cascade do |t|
     t.text "commentary_text"
@@ -29,6 +29,16 @@ ActiveRecord::Schema.define(version: 2019_09_04_143800) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "stars", force: :cascade do |t|
+    t.integer "star_status", default: 0
+    t.integer "post_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_stars_on_post_id"
+    t.index ["user_id"], name: "index_stars_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
