@@ -13,7 +13,7 @@
   - else
     =link_to rated_path(@post), method: :patch do
       %i.glyphicon.glyphicon-star-empty
-  %p= @star.star_count
+  %p= @star.star_count(params[:id])
 
 = link_to 'Edit', edit_post_path(@post), class:"btn btn-primary margin10"
 

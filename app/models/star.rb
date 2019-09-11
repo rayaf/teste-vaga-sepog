@@ -7,7 +7,7 @@ class Star < ApplicationRecord
     with_star: 1
   }
 
-  def star_count
-    Star.where(star_status: 1).count
+  def star_count post_id
+    Star.where("star_status = ? AND post_id = ?", 1, post_id).count
   end
 end
