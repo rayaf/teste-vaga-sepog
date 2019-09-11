@@ -4,12 +4,13 @@
   %p Não há nenhum comentario no momento
 -else
   - @commentaries.each do |commentary|
-    .container
+    %section
       .row.blogShort
         .col-md-10
           %article
             %p=commentary.commentary_text
 
         = link_to 'Edit', edit_commentary_path(commentary),class: "btn btn-sm btn-primary pull-right margin10"
-        = link_to 'Destroy', commentary, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger pull-right margin10"
+        = link_to 'Destroy', commentary, method: :delete, data: { confirm: 'Are you sure?', remote: true },
+            class: "btn btn-sm btn-danger pull-right margin10"
       %br

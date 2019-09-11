@@ -31,10 +31,12 @@ class CommentariesController < ApplicationController
 
   # DELETE /commentaries/1
   def destroy
-    if @commentary.destroy
-      redirect_to post_path(@commentary.post_id), notice: 'Comentario deletado com sucesso!'
-    else
-      redirect_to post_path(@commentary.post_id), notice: 'Acontecel um error'
+    respond_to do |format|
+      if @commentary.destroy
+        format.js
+      else
+        format.html {redirect_to post_path(@commentary.post_id), notice: 'Acontecel um error'}
+      end
     end
   end
 

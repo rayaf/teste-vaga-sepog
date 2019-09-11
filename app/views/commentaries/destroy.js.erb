@@ -1,0 +1,4 @@
+$('.btn-danger').bind('ajax:success', function() {
+  console.log('entrou');
+  $(this).closest('section').fadeOut();
+});
