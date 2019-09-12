@@ -29,8 +29,6 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.new(post_params)
     if @post.save
-      star = @post.stars.build(user_id: current_user.id)
-      star.save
       redirect_to @post, notice: 'Post criado com sucesso!'
     else
       render :new
@@ -54,13 +52,7 @@ class PostsController < ApplicationController
 
   # PATCH /posts/1/rated
   def rated
-    if @star.with_star?
-      @star.without_star!
-      redirect_to @post
-    else
-      @star.with_star!
-      redirect_to @post, notice: 'Obrigado pela estrela'
-    end
+    @star.change_rated
   end
 
   private
@@ -83,7 +75,8 @@ class PostsController < ApplicationController
       if star_querry = Star.where("user_id = ? AND post_id = ?", current_user.id, params[:id]).first
         star_querry
       else
-        @star = Star.where(post_id: params[:id]).first
+        star = @post.stars.build(user_id: current_user.id, post_id: @post.id).save()
+        set_star
       end
     end
 end

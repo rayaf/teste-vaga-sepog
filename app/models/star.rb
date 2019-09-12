@@ -10,4 +10,12 @@ class Star < ApplicationRecord
   def star_count post_id
     Star.where("star_status = ? AND post_id = ?", 1, post_id).count
   end
+
+  def change_rated
+    if self.with_star?
+      self.without_star!
+    else
+      self.with_star!
+    end
+  end
 end
