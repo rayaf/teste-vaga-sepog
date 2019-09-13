@@ -4,10 +4,12 @@ class PostsController < ApplicationController
   before_action :check_ownership, only: [:edit, :update, :destroy]
   before_action :set_star, only: [:show, :rated]
 
+  helper_method :ordenar_coluna, :ordernar_direcao
+
 
   # GET /posts
   def index
-    @posts = Post.all
+    @posts = Post.order(ordenar_coluna + " " + ordernar_direcao)
   end
 
   # GET /posts/1
@@ -79,4 +81,13 @@ class PostsController < ApplicationController
         set_star
       end
     end
+
+    def ordenar_coluna
+      Post.column_names.include?(params[:ordenar]) ? params[:ordenar] : 'title'
+    end
+    
+    def ordernar_direcao
+      %w[asc desc].include?(params[:direcao]) ? params[:direcao] : 'asc'
+    end
+    
 end
