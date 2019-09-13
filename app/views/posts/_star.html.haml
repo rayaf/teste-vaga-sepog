@@ -1,0 +1,6 @@
+=link_to rated_path(star.post.id), method: :patch, remote: true do
+  -if star.with_star?
+    %i.glyphicon.glyphicon-star
+  - else
+    %i.glyphicon.glyphicon-star-empty
+%p= star.star_count(star.post.id)

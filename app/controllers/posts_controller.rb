@@ -55,6 +55,7 @@ class PostsController < ApplicationController
   # PATCH /posts/1/rated
   def rated
     @star.change_rated
+    respond_to :js
   end
 
   private

@@ -6,19 +6,15 @@
       %article
         %p=sanitize(@post.content)
 %br
-.pull-right
-  -if @star.with_star?
-    =link_to rated_path(@post), method: :patch do
-      %i.glyphicon.glyphicon-star
-  - else
-    =link_to rated_path(@post), method: :patch do
-      %i.glyphicon.glyphicon-star-empty
-  %p= @star.star_count(params[:id])
+
+#star_partial.pull-right
+  =render 'star', star: @star
 
 = link_to 'Edit', edit_post_path(@post), class:"btn btn-primary margin10"
 
 = link_to 'Back', posts_path, class:"btn btn-success margin10"
 %br
 %br
+
 = render 'commentaries/form', commentary: @new_commentary
 = render 'commentaries/index', commentaries: @commentaries
